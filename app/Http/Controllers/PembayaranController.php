@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Models\Pembayaran;
 use PDF;
 
 class PembayaranController extends Controller
@@ -71,5 +72,22 @@ class PembayaranController extends Controller
         $pdf = PDF::loadview('pembayaran-pdf',['data'=> $data]);
         return $pdf->stream();
     }
+
+
+
+    public function historyPembayaran(Request $request)
+    {
+
+        // dd(auth()->user());
+        if (auth()->user()->level == 'siswa') {
+            $data = Pembayaran::where('nisn',DB::table('siswa')->where('id_login',auth()->user()->id)->first()->nisn)->get();
+
+        } {
+            $data = Pembayaran::get();
+            
+        }
+    	return view('history_pembayaran',['pembayaran'=>$data]);
+    }
+    
 
 }

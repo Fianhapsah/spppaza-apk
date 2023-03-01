@@ -26,7 +26,7 @@
         <div></div>
     </div>
     <center>
-        <h5>PEMBAYARAN REPORT PDF</h4>
+        <h5>HISTORY PEMBAYARAN REPORT PDF</h4>
 
     </center>
 
