@@ -34,10 +34,10 @@
                                 <span class="text-sm font-weight-bold mb-0">{{ $get->id_pembayaran }}</span>
                             </td>
                             <td class="align-middle text-center text-sm">
-                                <span class="text-sm font-weight-bold mb-0">{{ $get->siswa->nama }}</span>
+                                <span class="text-sm font-weight-bold mb-0">{{ !is_null($get->siswa) ? $get->siswa->nama : '' }}</span>
                             </td>
                             <td class="align-middle text-center text-sm">
-                                <span class="text-sm font-weight-bold mb-0">{{ $get->siswa->kelas->nama_kelas }}</span>
+                                <span class="text-sm font-weight-bold mb-0">{{ !is_null($get->siswa) ? $get->siswa->kelas->nama_kelas :'' }}</span>
                             </td>
                             <td class="align-middle text-center text-sm">
                                 <span class="text-sm font-weight-bold mb-0">{{ $get->nisn }}</span>

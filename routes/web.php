@@ -58,7 +58,9 @@ Route::get('pembayaran/delete/{id}', [PembayaranController::class, 'delete']);
 Route::get('pembayaran/edit/{id}', [PembayaranController::class, 'edit'])->name('pembayaran.edit');
 Route::post('pembayaran/update/{id}', [PembayaranController::class, 'update'])->name('pembayaran.update');
 Route::get('pembayaran/cetak-pdf/{id}', [PembayaranController::class, 'cetakpdf'])->name('pembayaran.cetak-pdf');
+Route::get('pembayaran/cetak-laporan-pembayaran/{tgl_bayar}', [PembayaranController::class, 'cetakLaporanPdf'])->name('pembayaran.cetak-laporan-pembayaran');
 Route::get('pembayaran/history_pembayaran', [PembayaranController::class, 'historyPembayaran']);
+Route::get('pembayaran/laporan_pembayaran', [PembayaranController::class, 'laporanPembayaran']);
 Route::get('pembayaran/history_pembayaran/{id}', [PembayaranController::class, 'historyPembayaranSiswa']);
 
 Route::get('petugas', [PetugasController::class, 'index']);

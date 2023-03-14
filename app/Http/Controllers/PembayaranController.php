@@ -68,7 +68,7 @@ class PembayaranController extends Controller
 
     public function cetakPdf($id)
     {   $data = DB::table('pembayaran')->where('id_pembayaran', $id)->first();
-        
+
         $pdf = PDF::loadview('pembayaran-pdf',['data'=> $data]);
         return $pdf->stream();
     }
@@ -78,16 +78,42 @@ class PembayaranController extends Controller
     public function historyPembayaran(Request $request)
     {
 
-        // dd(auth()->user());
-        if (auth()->user()->level == 'siswa') {
-            $data = Pembayaran::where('nisn',DB::table('siswa')->where('id_login',auth()->user()->id)->first()->nisn)->get();
 
-        } {
             $data = Pembayaran::get();
-            
-        }
+
     	return view('history_pembayaran',['pembayaran'=>$data]);
     }
-    
+
+
+    public function laporanPembayaran(Request $request)
+    {
+
+        if (isset($_GET['tgl_bayar'])) {
+            $data = Pembayaran::where('tgl_bayar',$_GET['tgl_bayar'])->get();
+
+        } else {
+            $data = Pembayaran::get();
+
+        }
+    	return view('laporan_pembayaran',['pembayaran'=>$data]);
+    }
+
+    public function cetakLaporanPdf(Request $request,$tgl_bayar)
+    {
+
+        if ($tgl_bayar != 'all') {
+            $data = Pembayaran::where('tgl_bayar',$tgl_bayar)->get();
+
+        } else {
+            $data = Pembayaran::get();
+
+        }
+
+
+        $pdf = PDF::loadview('laporan-pembayaran-pdf',['data'=> $data]);
+        return $pdf->stream();
+
+    }
+
 
 }
